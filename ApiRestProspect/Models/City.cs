@@ -9,7 +9,7 @@ namespace ApiRestProspect.Models
     public class City
     {
         public int city_id { get; set; }
-        public string country_name { get; set; }
+        public string city_name { get; set; }
 
         //relacion de uno a uno con Country
         [ForeignKey("Country")]

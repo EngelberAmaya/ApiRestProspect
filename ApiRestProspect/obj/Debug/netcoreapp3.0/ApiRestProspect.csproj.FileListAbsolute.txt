@@ -1,0 +1,10 @@
+C:\Users\engel\source\repos\ApiRestProspect\ApiRestProspect\bin\Debug\netcoreapp3.0\appsettings.Development.json
+C:\Users\engel\source\repos\ApiRestProspect\ApiRestProspect\bin\Debug\netcoreapp3.0\appsettings.json
+C:\Users\engel\source\repos\ApiRestProspect\ApiRestProspect\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
+C:\Users\engel\source\repos\ApiRestProspect\ApiRestProspect\bin\Debug\netcoreapp3.0\ApiRestProspect.exe
+C:\Users\engel\source\repos\ApiRestProspect\ApiRestProspect\obj\Debug\netcoreapp3.0\ApiRestProspect.csprojAssemblyReference.cache
+C:\Users\engel\source\repos\ApiRestProspect\ApiRestProspect\obj\Debug\netcoreapp3.0\staticwebassets\ApiRestProspect.StaticWebAssets.Manifest.cache
+C:\Users\engel\source\repos\ApiRestProspect\ApiRestProspect\obj\Debug\netcoreapp3.0\staticwebassets\ApiRestProspect.StaticWebAssets.xml
+C:\Users\engel\source\repos\ApiRestProspect\ApiRestProspect\obj\Debug\netcoreapp3.0\ApiRestProspect.AssemblyInfoInputs.cache
+C:\Users\engel\source\repos\ApiRestProspect\ApiRestProspect\obj\Debug\netcoreapp3.0\ApiRestProspect.AssemblyInfo.cs
+C:\Users\engel\source\repos\ApiRestProspect\ApiRestProspect\obj\Debug\netcoreapp3.0\ApiRestProspect.RazorTargetAssemblyInfo.cache
