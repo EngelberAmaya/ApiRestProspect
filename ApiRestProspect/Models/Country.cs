@@ -9,5 +9,8 @@ namespace ApiRestProspect.Models
     {
         public int country_id { get; set; }
         public string country_name { get; set; }
+        //relacion de uno a uno con City
+        public virtual City City { get; set; }
     }
+
 }

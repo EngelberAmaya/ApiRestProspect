@@ -9,6 +9,7 @@ namespace ApiRestProspect.Models
     {
         public int title_id { get; set; }
         public string title_name { get; set; }
+        public virtual Prospect Prospect { get; set; }
 
     }
 }

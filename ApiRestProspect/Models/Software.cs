@@ -9,5 +9,6 @@ namespace ApiRestProspect.Models
     {
         public int software_id { get; set; }
         public string software_name { get; set; }
+        public virtual Software_Prospect Software_Prospect { get; set; }
     }
 }
