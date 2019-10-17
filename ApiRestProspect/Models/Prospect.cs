@@ -15,11 +15,11 @@ namespace ApiRestProspect.Models
         [ForeignKey("City")]
         public int city_id { get; set; }
         public string prospect_address { get; set; }
-        public int prospect_phonenumber { get; set; }
-        public object prospect_cv { get; set; }
+        public string prospect_phonenumber { get; set; }
+        public Byte prospect_cv { get; set; }
         public Byte prospect_photo { get; set; }
-        public Byte prospect_link { get; set; }
-        public double prospect_salary { get; set; }
+        public string prospect_link { get; set; }
+        public int prospect_salary { get; set; }
         [ForeignKey("Title")]
         public int title_id { get; set; }
 
