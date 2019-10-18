@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\engel\\source\\repos\\ApiRestProspect\\ApiRestProspect\\ApiRestProspect.csproj": {}
+    "C:\\Users\\Jesus Soteldo\\source\\repos\\ApiRestProspect\\ApiRestProspect\\ApiRestProspect.csproj": {}
   },
   "projects": {
-    "C:\\Users\\engel\\source\\repos\\ApiRestProspect\\ApiRestProspect\\ApiRestProspect.csproj": {
+    "C:\\Users\\Jesus Soteldo\\source\\repos\\ApiRestProspect\\ApiRestProspect\\ApiRestProspect.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\engel\\source\\repos\\ApiRestProspect\\ApiRestProspect\\ApiRestProspect.csproj",
+        "projectUniqueName": "C:\\Users\\Jesus Soteldo\\source\\repos\\ApiRestProspect\\ApiRestProspect\\ApiRestProspect.csproj",
         "projectName": "ApiRestProspect",
-        "projectPath": "C:\\Users\\engel\\source\\repos\\ApiRestProspect\\ApiRestProspect\\ApiRestProspect.csproj",
-        "packagesPath": "C:\\Users\\engel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\engel\\source\\repos\\ApiRestProspect\\ApiRestProspect\\obj\\",
+        "projectPath": "C:\\Users\\Jesus Soteldo\\source\\repos\\ApiRestProspect\\ApiRestProspect\\ApiRestProspect.csproj",
+        "packagesPath": "C:\\Users\\Jesus Soteldo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jesus Soteldo\\source\\repos\\ApiRestProspect\\ApiRestProspect\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\engel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jesus Soteldo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -37,6 +40,20 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
