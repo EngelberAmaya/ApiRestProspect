@@ -10,6 +10,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
+using ApiRestProspect.Models;
+using Microsoft.AspNetCore.Http;
+
 
 namespace ApiRestProspect
 {
@@ -25,7 +30,28 @@ namespace ApiRestProspect
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            // nuevo
+            services.AddCors();
+            //
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddJsonOptions(ConfigureJson); // nuevo
+            services.AddDbContext<BaseContext>(options =>
+              options.UseSqlServer(
+                  Configuration.GetConnectionString("BaseContext")));
+
+            //services.AddControllers();
+        }
+
+        
+        private void ConfigureJson(MvcJsonOptions obj)  
+        {
+            obj.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +61,11 @@ namespace ApiRestProspect
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+                {
+                    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                    app.UseHsts();
+                }
 
             app.UseHttpsRedirection();
 
@@ -46,6 +77,9 @@ namespace ApiRestProspect
             {
                 endpoints.MapControllers();
             });
+
+            app.UseHttpsRedirection();
+            app.UseMvc();
         }
     }
 }
