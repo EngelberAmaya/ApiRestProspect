@@ -15,6 +15,9 @@ using Microsoft.EntityFrameworkCore;
 using ApiRestProspect.Models;
 using Microsoft.AspNetCore.Http;
 
+//nuevo
+using Microsoft.AspNetCore.Cors;
+
 
 namespace ApiRestProspect
 {
@@ -30,29 +33,12 @@ namespace ApiRestProspect
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // nuevo
-            services.AddCors();
-            //
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            //services.AddMvc().AddJsonOptions(ConfigureJson); // nuevo
-            services.AddDbContext<BaseContext>(options =>
-              options.UseSqlServer(
-                  Configuration.GetConnectionString("BaseContext")));
-
-            //services.AddControllers();
+            services.AddControllers();
+            services.AddDbContext<Context>(options =>
+            options.UseSqlServer(Configuration.GetValue<string>("Context")));
         }
 
-        /*
-        private void ConfigureJson(MvcJsonOptions obj)  
-        {
-            obj.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-        }*/
+        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -61,25 +47,22 @@ namespace ApiRestProspect
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-                {
-                    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                    app.UseHsts();
-                }
-
+                       
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
-            app.UseHttpsRedirection();
-            app.UseMvc();
+            
         }
+
+
+
     }
 }

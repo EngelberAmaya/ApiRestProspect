@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace ApiRestProspect.Models
 {
     public class Prospect
     {
+        [Key]
         public int prospect_id { get; set; }
         public string prospect_name { get; set; }
         public string prospect_lastname { get; set; }

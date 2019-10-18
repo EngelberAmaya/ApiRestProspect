@@ -7,6 +7,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+//nuevo
+using System.IO;
+using Microsoft.AspNetCore;
+
 namespace ApiRestProspect
 {
     public class Program
@@ -14,6 +18,7 @@ namespace ApiRestProspect
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -22,5 +27,7 @@ namespace ApiRestProspect
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+       
     }
 }

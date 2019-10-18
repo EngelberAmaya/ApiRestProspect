@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace ApiRestProspect.Models
 {
     public class Software_Prospect
     {
+        [Key]
         [ForeignKey("Software")]
         public int software_id { get; set; }
 
