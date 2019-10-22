@@ -37,15 +37,13 @@ namespace ApiRestProspect
             services.AddScoped<ProspectsRepository>();
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll",
-                    builder =>
-                    {
-                        builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials();
-                    });
+                options.AddPolicy("AllowAllHeaders",
+                      builder =>
+                      {
+                          builder.AllowAnyOrigin()
+                                 .AllowAnyHeader()
+                                 .AllowAnyMethod();
+                      });
             });
         }
 
@@ -67,7 +65,7 @@ namespace ApiRestProspect
             {
                 endpoints.MapControllers();
             });
-            app.UseCors("AllowAll");
+            app.UseCors("AllowAllHeaders");
         }
     }
 }
