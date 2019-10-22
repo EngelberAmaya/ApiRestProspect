@@ -12,8 +12,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Net;
-using Microsoft.EntityFrameworkCore.Sqlite;
+//using Microsoft.EntityFrameworkCore.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using ApiRestProspect.Controllers;
+using ApiRestProspect.Data;
 
 namespace ApiRestProspect
 {
@@ -32,6 +34,7 @@ namespace ApiRestProspect
             services.AddControllers();
             services.AddDbContext<Context>(options =>
             options.UseSqlServer(Configuration.GetValue<string>("Context")));
+            services.AddScoped<ProspectsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

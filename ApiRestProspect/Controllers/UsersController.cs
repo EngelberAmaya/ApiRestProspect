@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ApiRestProspect.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("Api/[controller]")]
     public class UsersController : ControllerBase
     {
         private readonly Context _context;
@@ -29,27 +29,51 @@ namespace ApiRestProspect.Controllers
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<User>> Get(string id)
         {
-            return "value";
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return user;
         }
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<ActionResult<User>> Post([FromBody]User item)
         {
+            _context.Users.Add(item);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(Get), new { id = item.user_name }, item);
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<IActionResult> Put(string id, [FromBody]User item)
         {
+            if (id != item.user_name)
+            {
+                return NotFound();
+            }
+            _context.Entry(item).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return Ok();
         }
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
+            var item = await _context.Users.FindAsync(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            _context.Users.Remove(item);
+            await _context.SaveChangesAsync();
+            return Ok();
         }
     }
 }

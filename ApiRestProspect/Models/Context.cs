@@ -13,5 +13,6 @@ namespace ApiRestProspect.Models
         {
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<Prospect> Prospect { get; set; }
     }
 }
