@@ -22,6 +22,8 @@ namespace ApiRestProspect.Models
             // para configurar las claves conpuestas 
             modelBuilder.Entity<Software_Prospect>().HasKey(softprosp => new { softprosp.software_id, softprosp.prospect_id});
 
+            modelBuilder.Entity<City>().HasKey(ci => new {ci.country_id });
+
             //asignando las propiedades, para las relaciones de las claves compuestas
             
             modelBuilder.Entity<Software_Prospect>().HasOne(softprosp => softprosp.Software)
@@ -31,6 +33,10 @@ namespace ApiRestProspect.Models
             modelBuilder.Entity<Software_Prospect>().HasOne(softprosp => softprosp.Prospect)
                                              .WithOne(softprosp => softprosp.Software_Prospect)
                                              .HasForeignKey<Software_Prospect>(softprosp => softprosp.prospect_id);
+            
+            /*modelBuilder.Entity<City>().HasOne(ci => ci.Country)
+                                        .WithOne(ci => ci.City)
+                                        .HasForeignKey<City>(ci => ci.country_id);*/
 
 
         }
@@ -39,6 +45,7 @@ namespace ApiRestProspect.Models
         public DbSet<Software_Prospect> Software_Prospect { get; set; }
         public DbSet<Title> Title { get; set; }
         public DbSet<City> City { get; set; }
+        public DbSet<Country> Country { get; set; }
 
 
     }

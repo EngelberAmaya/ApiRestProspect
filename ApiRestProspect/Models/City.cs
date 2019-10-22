@@ -15,8 +15,8 @@ namespace ApiRestProspect.Models
 
         //relacion de uno a uno con Country
         [ForeignKey("Country")]
-        public int country_id { get; set; }
+        public string country_id { get; set; }
         
-        public virtual Country Country { get; set; }
+        public Country Country { get; set; }
     }
 }

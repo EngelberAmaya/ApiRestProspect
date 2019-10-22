@@ -33,6 +33,7 @@ namespace ApiRestProspect
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers();
             services.AddDbContext<Context>(options =>
             options.UseSqlServer(Configuration.GetValue<string>("Context")));
@@ -41,7 +42,7 @@ namespace ApiRestProspect
         }
 
         
-        
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -62,10 +63,13 @@ namespace ApiRestProspect
                 endpoints.MapControllers();
             });
 
-            
+        app.UseCors(option =>
+         option.WithOrigins("http://localhost:4200")
+         .AllowAnyMethod()
+         .AllowAnyHeader());
         }
 
-
+       
 
     }
 }

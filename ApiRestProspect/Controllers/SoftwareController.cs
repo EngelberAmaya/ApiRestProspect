@@ -32,7 +32,7 @@ namespace ApiRestProspect.Controllers
 
         
         [HttpGet("{software_id}")]
-        public async Task<ActionResult<Software>> GetTodoItem(int software_id)
+        public async Task<ActionResult<Software>> GetAllSoftware(int software_id)
         {
             var todoSoftware = await _context.Software.FindAsync(software_id);
 
