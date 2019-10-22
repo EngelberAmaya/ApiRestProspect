@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using ApiRestProspect.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -20,21 +21,29 @@ namespace ApiRestProspect.Data
         {
             var model = new
             {
-                SoftwareID = (long)reader["prospect_id"],
-                softwareName = reader["SoftwareName"].ToString(),
-                HardwareID = (long)reader["HardwareID"],
-                hardwareName = reader["HardwareName"].ToString()
+                prospect_id = (int)reader["prospect_id"],
+                prospect_name = reader["prospect_Name"].ToString(),
+                prospect_lastname = reader["prospect_lastname"].ToString(),
+                prospect_birthday = (DateTime)reader["prospect_birthday"],
+                city_id = reader["city_Id"].ToString(),
+                prospect_address= reader["prospect_address"].ToString(),
+                prospect_phonenumber= reader["prospect_phonenumber"].ToString(),
+                prospect_cv= reader["prospect_cv"].ToString(),
+                prospect_photo= reader["prospect_photo"].ToString(),
+                prospect_link= reader["prospect_link"].ToString(),
+                prospect_salary= (int)reader["prospect_salary"],
+                title_id= reader["title_id"].ToString()
             };
             return model;
         }
-        public async Task<object> GetById(long Id, long ExperienceYears)
+        public async Task<object> GetById(long? Id, long? ExperienceYears)
         {
             using (SqlConnection sql = new SqlConnection(_connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("sp_GetProspects", sql))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@ProspectId", Id));
+                    //cmd.Parameters.Add(new SqlParameter("@ProspectId", Id));
                     var response = new List<object>();
                     await sql.OpenAsync();
 

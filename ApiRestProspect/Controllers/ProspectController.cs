@@ -26,10 +26,16 @@ namespace ApiRestProspect.Controllers
         }
         // GET: api/<controller>
         [HttpGet]
-        public async Task<IEnumerable<Prospect>> Get()
+        public async Task<IActionResult> GetAll()
         {
-           // return await _context.Prospect.ToListAsync();
-            return await _context.Prospect.ToListAsync();
+            // return await _context.Prospect.ToListAsync();
+
+            var response= await _repository.GetById(null,null);
+            if (response == null)
+            {
+                return NotFound();
+            }
+            return Ok(response);
             //return new string[] { "value1", "value2" };
         }
 
