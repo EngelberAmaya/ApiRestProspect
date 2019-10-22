@@ -6,6 +6,7 @@ using ApiRestProspect.Models;
 using ApiRestProspect.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,7 +31,7 @@ namespace ApiRestProspect.Controllers
         {
             // return await _context.Prospect.ToListAsync();
 
-            var response= await _repository.GetById(null,null);
+            var response= await _repository.GetAll(null,30, 50,550,2000);
             if (response == null)
             {
                 return NotFound();
@@ -52,7 +53,14 @@ namespace ApiRestProspect.Controllers
             }
             return prospect;
         }
-
+        // POST api/<controller>
+        [HttpPost("filter")]
+        public async Task<ActionResult<Prospect>> Post2([FromBody] Filtro item)
+        {
+            //dynamic data = JsonConvert.DeserializeObject(item);
+            var response = await _repository.GetAll((long)item.prospect_id, item.ageMin,item.ageMax , item.salaryMin, item.salaryMax);
+            return Ok(response); //;
+        }
         // POST api/<controller>
         [HttpPost]
         public async Task<ActionResult<Prospect>> Post([FromBody]Prospect item)

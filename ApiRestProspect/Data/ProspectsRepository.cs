@@ -36,14 +36,19 @@ namespace ApiRestProspect.Data
             };
             return model;
         }
-        public async Task<object> GetById(long? Id, long? ExperienceYears)
+        public async Task<object> GetAll(long? Id, long? Age_Min, long? Age_Max,
+                                long? Salary_Min, long? Salary_Max)
         {
             using (SqlConnection sql = new SqlConnection(_connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("sp_GetProspects", sql))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    //cmd.Parameters.Add(new SqlParameter("@ProspectId", Id));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_id", Id));
+                    cmd.Parameters.Add(new SqlParameter("@age_min", Age_Min));
+                    cmd.Parameters.Add(new SqlParameter("@age_max", Age_Max));
+                    cmd.Parameters.Add(new SqlParameter("@salary_min", Salary_Min));
+                    cmd.Parameters.Add(new SqlParameter("@salary_max", Salary_Max));
                     var response = new List<object>();
                     await sql.OpenAsync();
 
