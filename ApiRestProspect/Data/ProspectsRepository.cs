@@ -63,5 +63,60 @@ namespace ApiRestProspect.Data
                 }
             }
         }
+        public async Task<object> PostProspect(Prospect item)
+        {
+            using (SqlConnection sql = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_InsertProspects", sql))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@prospect_name", item.prospect_name));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_lastname", item.prospect_lastname));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_birthday", item.prospect_birthday));
+                    cmd.Parameters.Add(new SqlParameter("@city_id", item.city_id));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_address", item.prospect_address));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_phonenumber", item.prospect_phonenumber));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_cv", item.prospect_cv));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_photo", item.prospect_photo));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_link", item.prospect_link));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_salary", item.prospect_salary));
+                    cmd.Parameters.Add(new SqlParameter("@title_id", item.title_id));
+                    
+                    var response = new List<object>();
+                    await sql.OpenAsync();
+
+                    await cmd.ExecuteNonQueryAsync();
+                    return response;
+                }
+            }
+        }
+        public async Task<object> PutProspect(Prospect item)
+        {
+            using (SqlConnection sql = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_UpdateProspect", sql))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@prospect_id", item.prospect_id));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_name", item.prospect_name));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_lastname", item.prospect_lastname));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_birthday", item.prospect_birthday));
+                    cmd.Parameters.Add(new SqlParameter("@city_id", item.city_id));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_address", item.prospect_address));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_phonenumber", item.prospect_phonenumber));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_cv", item.prospect_cv));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_photo", item.prospect_photo));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_link", item.prospect_link));
+                    cmd.Parameters.Add(new SqlParameter("@prospect_salary", item.prospect_salary));
+                    cmd.Parameters.Add(new SqlParameter("@title_id", item.title_id));
+
+                    var response = new List<object>();
+                    await sql.OpenAsync();
+
+                    await cmd.ExecuteNonQueryAsync();
+                    return response;
+                }
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ using ApiRestProspect.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Cors;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,6 +15,7 @@ namespace ApiRestProspect.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+   // [EnableCors(origins: "http://www.example.com", headers: "*", methods: "*")]
     public class ProspectController : ControllerBase
     {
         private readonly Context _context;
@@ -31,7 +33,7 @@ namespace ApiRestProspect.Controllers
         {
             // return await _context.Prospect.ToListAsync();
 
-            var response= await _repository.GetAll(null,30, 50,550,2000);
+            var response= await _repository.GetAll(null,null,null,null,null);
             if (response == null)
             {
                 return NotFound();
@@ -58,16 +60,18 @@ namespace ApiRestProspect.Controllers
         public async Task<ActionResult<Prospect>> Post2([FromBody] Filtro item)
         {
             //dynamic data = JsonConvert.DeserializeObject(item);
-            var response = await _repository.GetAll((long)item.prospect_id, item.ageMin,item.ageMax , item.salaryMin, item.salaryMax);
+            var response = await _repository.GetAll(item.prospect_id, item.ageMin,item.ageMax , item.salaryMin, item.salaryMax);
             return Ok(response); //;
         }
         // POST api/<controller>
         [HttpPost]
         public async Task<ActionResult<Prospect>> Post([FromBody]Prospect item)
         {
-            _context.Prospect.Add(item);
+            /*_context.Prospect.Add(item);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(Get), new { id = item.prospect_id }, item); 
+            return CreatedAtAction(nameof(Get), new { id = item.prospect_id }, item); */
+            var response = await _repository.PostProspect(item);
+            return Ok(response); //;
         }
 
         // PUT api/<controller>/5
@@ -78,9 +82,11 @@ namespace ApiRestProspect.Controllers
             {
                 return NotFound();
             }
-            _context.Entry(item).State = EntityState.Modified;
+            var response = await _repository.PutProspect(item);
+            return Ok(response); //;
+            /*_context.Entry(item).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok();*/
         }
 
         // DELETE api/<controller>/5

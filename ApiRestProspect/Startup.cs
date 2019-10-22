@@ -35,6 +35,18 @@ namespace ApiRestProspect
             services.AddDbContext<Context>(options =>
             options.UseSqlServer(Configuration.GetValue<string>("Context")));
             services.AddScoped<ProspectsRepository>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +67,7 @@ namespace ApiRestProspect
             {
                 endpoints.MapControllers();
             });
+            app.UseCors("AllowAll");
         }
     }
 }
