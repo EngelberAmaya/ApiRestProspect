@@ -13,6 +13,7 @@ namespace ApiRestProspect.Models
         [ForeignKey("Software")]
         public int software_id { get; set; }
 
+        [Key]
         [ForeignKey("Prospect")]
         public int prospect_id { get; set; }
         public int experience_level { get; set; }

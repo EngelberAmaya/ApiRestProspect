@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApiRestProspect.Data;
 using ApiRestProspect.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,12 @@ namespace ApiRestProspect.Controllers
     public class SoftwareController : ControllerBase
     {
         private readonly Context _context;
+        private readonly SoftwareRepository _softRep;
 
-        public SoftwareController(Context context)
+        public SoftwareController(Context context, SoftwareRepository softRep)
         {
             _context = context;
+            _softRep = softRep;
         }
 
         
@@ -27,29 +30,67 @@ namespace ApiRestProspect.Controllers
             return await _context.Software.ToListAsync();
         }
 
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        
+        [HttpGet("{software_id}")]
+        public async Task<ActionResult<Software>> GetTodoItem(int software_id)
         {
-            return "value";
+            var todoSoftware = await _context.Software.FindAsync(software_id);
+
+            if (todoSoftware == null)
+            {
+                return NotFound();
+            }
+
+            return todoSoftware;
         }
 
-        // POST api/<controller>
+        [HttpGet("prospect/{prospect_id}")]
+        public async Task<ActionResult> GetTodoItem2([FromRoute] int prospect_id)
+        {
+            var todoSoftware = await _context.Software.Where(x=>x.Software_Prospect.prospect_id==prospect_id).ToListAsync();
+
+            if (todoSoftware == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(todoSoftware);
+        }
+
+        
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task PostSoftware([FromBody] Software software)
         {
+            await _softRep.InsertSoftware(software);
         }
 
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+   
+        [HttpPut("{software_id}")]
+        public async Task<IActionResult> PutSoftware(int software_id, [FromBody] Software software)
         {
+
+            //await _basRep.UpdateUser(user, id);
+            await _softRep.UpdateSoftware(software_id, software);
+
+            return Ok();
         }
 
-        // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+
+        [HttpDelete("{software_id}")]
+        public async Task<IActionResult> DeleteSoftware(int software_id)
         {
+            var Item = await _context.Software.FindAsync(software_id);
+
+            if (Item == null)
+            {
+                return NotFound();
+            }
+
+            _context.Software.Remove(Item);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
+
     }
 }

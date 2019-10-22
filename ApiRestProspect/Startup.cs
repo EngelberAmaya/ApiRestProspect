@@ -17,7 +17,7 @@ using Microsoft.AspNetCore.Http;
 
 //nuevo
 using Microsoft.AspNetCore.Cors;
-
+using ApiRestProspect.Data;
 
 namespace ApiRestProspect
 {
@@ -36,8 +36,11 @@ namespace ApiRestProspect
             services.AddControllers();
             services.AddDbContext<Context>(options =>
             options.UseSqlServer(Configuration.GetValue<string>("Context")));
+
+            services.AddScoped<SoftwareRepository>(); //nuevo
         }
 
+        
         
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
