@@ -35,6 +35,7 @@ namespace ApiRestProspect
             services.AddDbContext<Context>(options =>
             options.UseSqlServer(Configuration.GetValue<string>("Context")));
             services.AddScoped<ProspectsRepository>();
+            services.AddScoped<SoftwareRepository>();
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAllHeaders",

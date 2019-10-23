@@ -28,7 +28,7 @@ namespace ApiRestProspect.Models
         public int? title_id { get; set; }
         public virtual Title Title { get; set; }
         public virtual City City { get; set; }
-        //public virtual Software_Prospect Software_Prospect { get; set; }
+        public virtual Software_Prospect Software_Prospect { get; set; }
 
     }
 

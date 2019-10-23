@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ApiRestProspect.Controllers
 {
     [ApiController]
-    [Route("Api/[controller]")]
+    [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
         private readonly Context _context;

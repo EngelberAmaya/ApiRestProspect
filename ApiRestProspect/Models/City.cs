@@ -11,12 +11,12 @@ namespace ApiRestProspect.Models
     {
         [Key]
         public int city_id { get; set; }
-        public string country_name { get; set; }
+        public string city_name { get; set; }
 
         //relacion de uno a uno con Country
         [ForeignKey("Country")]
-        public int country_id { get; set; }
+        public string country_id { get; set; }
         public virtual Country Country { get; set; }
-        public virtual ICollection<Prospect> Prospects { get; set; }
+        //public virtual ICollection<Prospect> Prospects { get; set; }
     }
 }
