@@ -18,18 +18,6 @@ namespace ApiRestProspect.Data
             _connectionString = configuration.GetConnectionString("Context");
         }
 
-        private object MapModelSoftware(SqlDataReader reader)
-        {
-
-            var model = new
-            {
-                software_id = (long)reader["software_id"],
-                software_name = reader["software_name"].ToString(),
-            };
-            return model;
-        }
-
-        
 
         public async Task InsertSoftware(Software software)
         {

@@ -25,18 +25,18 @@ namespace ApiRestProspect.Controllers
         }
 
 
-        /*
         [HttpGet("country/{country_id}")]
-        public async Task<ActionResult> GetCountrybyCity([FromRoute] int country_id)
+        public async Task<ActionResult> GetCityByCountry([FromRoute] string country_id)
         {
-            var cityCountry = await _context.City.Where(x => x.Country.country_id = country_id).ToListAsync();
+            var todoCityByCountry = await _context.City.Where(x => x.Country.country_id == country_id).ToListAsync();
 
-            if (cityCountry == null)
+            if (todoCityByCountry == null)
             {
                 return NotFound();
             }
 
-            return Ok(cityCountry);
-        }*/
+            return Ok(todoCityByCountry);
+        }
+
     }
 }

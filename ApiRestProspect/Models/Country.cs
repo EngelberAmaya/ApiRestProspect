@@ -13,7 +13,7 @@ namespace ApiRestProspect.Models
         public string country_name { get; set; }
         //relacion de uno a uno con City
         public virtual ICollection<City> City { get; set; }
-        //public virtual City City { get; set; }
+        
     }
 
 }
