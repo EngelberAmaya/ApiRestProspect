@@ -68,8 +68,6 @@ namespace ApiRestProspect.Controllers
         [HttpPut("{software_id}")]
         public async Task<IActionResult> PutSoftware(int software_id, [FromBody] Software software)
         {
-
-            //await _basRep.UpdateUser(user, id);
             await _softRep.UpdateSoftware(software_id, software);
 
             return Ok();
@@ -77,19 +75,10 @@ namespace ApiRestProspect.Controllers
 
 
         [HttpDelete("{software_id}")]
-        public async Task<IActionResult> DeleteSoftware(int software_id)
+        public async Task DeleteTitle(int software_id)
         {
-            var Item = await _context.Software.FindAsync(software_id);
-
-            if (Item == null)
-            {
-                return NotFound();
-            }
-
-            _context.Software.Remove(Item);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            //await _repository.DeleteById(id);
+            await _softRep.DeletedSoftware(software_id);
         }
 
     }

@@ -39,6 +39,7 @@ namespace ApiRestProspect
             options.UseSqlServer(Configuration.GetValue<string>("Context")));
 
             services.AddScoped<SoftwareRepository>(); //nuevo
+            services.AddScoped<TitleRepository>();
         }
 
         
