@@ -40,6 +40,7 @@ namespace ApiRestProspect
 
             services.AddScoped<SoftwareRepository>(); //nuevo
             services.AddScoped<TitleRepository>();
+            services.AddScoped<UserRepository>();
         }
 
         

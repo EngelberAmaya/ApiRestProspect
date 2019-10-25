@@ -9,7 +9,9 @@ namespace ApiRestProspect.Models
     public class User
     {
         [Key]
+        
         public string user_name { get; set; }
+  
         public string user_password { get; set; }
         public int role_id { get; set; }
        
