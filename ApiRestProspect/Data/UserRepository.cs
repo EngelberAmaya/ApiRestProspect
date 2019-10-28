@@ -21,21 +21,14 @@ namespace ApiRestProspect.Data
         private object MapModelUser(SqlDataReader reader)
         {
 
-            if(reader == null)
-            {
-                return null;
-                               
-            }
-            else
-            {
-                var model = new
+             var model = new
                 {
                     user_name = reader["user_name"].ToString(),
                     user_password = reader["user_password"].ToString(),
                     
                 };
                 return model;
-            }
+            
 
         }
 
