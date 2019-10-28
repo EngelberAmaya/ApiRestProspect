@@ -32,21 +32,13 @@ namespace ApiRestProspect.Controllers
         [HttpGet("name/{user_name}/{user_password}")]
         public async Task<IActionResult> GetLogin([FromRoute] string user_name, [FromRoute]  string user_password)
         {
-            //myList = null;
-            //String[] arr = Array.Empty<string>();
-            // String[] arr = new String[0];
-            string[] arr = new string[] { };
-            // string[] arr = null;
-            //string[] a = { };
-            //var arr = Array.Empty<string>();
-            
-
+                   
             var response = await _repository.GetLogin(user_name, user_password);
             
-            if (response == null || response == null) 
+            if (response == null) 
             {
-                //return NotFound();
-                return null;
+                return NotFound();
+                
             }
             else {
                 return Ok(response);
